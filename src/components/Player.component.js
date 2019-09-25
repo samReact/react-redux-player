@@ -1,23 +1,46 @@
 import React, { Component } from 'react';
-import { Player, ControlBar, ReplayControl } from 'video-react';
+import { Player } from 'video-react';
+import { Button, Container } from 'reactstrap';
+import { MdPause, MdPlayArrow } from 'react-icons/md';
 
 class PlayerItem extends Component {
+  play = () => {
+    this.player.play();
+  };
+
+  pause = () => {
+    this.player.pause();
+  };
+
+  reload = () => {
+    this.player.load();
+  };
   render() {
+    const { url, reload } = this.props;
+    if (reload) {
+      this.reload();
+    }
     return (
-      <div>
+      <Container>
         <Player
+          fluid
           ref={player => {
             this.player = player;
           }}
           autoPlay
           ControlBar
         >
-          <source src="https://media.w3.org/2010/05/sintel/trailer.mp4" />
-          <ControlBar autoHide={false}>
-            <ReplayControl seconds={10} order={2.2} />
-          </ControlBar>
+          <source src={url} />
         </Player>
-      </div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button onClick={this.play} outline color="secondary" style={{ margin: 10 }}>
+            <MdPlayArrow style={{ height: 50, width: 50 }} />
+          </Button>
+          <Button onClick={this.pause} outline color="secondary" style={{ margin: 10 }}>
+            <MdPause style={{ height: 50, width: 50 }} />
+          </Button>
+        </div>
+      </Container>
     );
   }
 }

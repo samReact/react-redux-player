@@ -1,14 +1,14 @@
 import React from 'react';
-import Card from './Card.component';
+import Card from '../containers/card.container';
 import cards from '../datas';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 
 const CardList = () => {
   return (
     <Container>
       <Row>
         {cards.map((card, index) => (
-          <Card key={index} source={card.thumb} />
+          <Card card={card} key={index} />
         ))}
       </Row>
     </Container>
