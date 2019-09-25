@@ -22,7 +22,7 @@ class PlayerItem extends Component {
       this.reload();
     }
     return (
-      <Container>
+      <Container style={{ marginTop: 20 }}>
         <Player
           fluid
           ref={player => {
