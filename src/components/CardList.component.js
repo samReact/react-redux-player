@@ -1,14 +1,17 @@
 import React from 'react';
 import Card from './Card.component';
 import cards from '../datas';
-console.log(cards[0]);
+import { Container, Row, Col } from 'reactstrap';
+
 const CardList = () => {
   return (
-    <div>
-      {cards.map((card, index) => (
-        <Card key={index} source={card.thumb} />
-      ))}
-    </div>
+    <Container>
+      <Row>
+        {cards.map((card, index) => (
+          <Card key={index} source={card.thumb} />
+        ))}
+      </Row>
+    </Container>
   );
 };
 export default CardList;

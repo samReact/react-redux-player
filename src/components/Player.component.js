@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../../node_modules/video-react/dist/video-react.css';
 import { Player, ControlBar, ReplayControl } from 'video-react';
 
 class PlayerItem extends Component {
