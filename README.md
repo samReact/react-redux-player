@@ -1,4 +1,4 @@
-### Run the project on dev mode
+### Running the project on dev mode
 
 1. Clone the repository
    `git clone https://github.com/tifus69/react-redux-player.git`

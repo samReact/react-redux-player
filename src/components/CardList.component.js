@@ -7,7 +7,7 @@ import cards from '../datas';
 const CardList = () => {
   return (
     <Container>
-      <Row>
+      <Row style={{ justifyContent: 'center' }}>
         {cards.map((card, index) => (
           <Card card={card} key={index} />
         ))}
