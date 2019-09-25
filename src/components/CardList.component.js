@@ -1,7 +1,8 @@
 import React from 'react';
+import { Container, Row } from 'reactstrap';
+
 import Card from '../containers/card.container';
 import cards from '../datas';
-import { Container, Row } from 'reactstrap';
 
 const CardList = () => {
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Card.css';
 import { MdPlayCircleOutline } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
 const Card = props => {
   const { card, sourceChange } = props;
@@ -22,6 +23,11 @@ const Card = props => {
       />
     </div>
   );
+};
+
+Card.propTypes = {
+  card: PropTypes.object.isRequired,
+  sourceChange: PropTypes.func.isRequired,
 };
 
 export default Card;

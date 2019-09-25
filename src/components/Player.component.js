@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Player } from 'video-react';
 import { Button, Container } from 'reactstrap';
 import { MdPause, MdPlayArrow } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
 class PlayerItem extends Component {
   play = () => {
@@ -44,5 +45,10 @@ class PlayerItem extends Component {
     );
   }
 }
+
+PlayerItem.propTypes = {
+  url: PropTypes.string.isRequired,
+  reload: PropTypes.bool.isRequired,
+};
 
 export default PlayerItem;
