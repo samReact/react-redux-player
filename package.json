@@ -15,7 +15,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run testnowatch && lint-staged"
+      "pre-commit": "npm run test:nowatch && lint-staged"
     }
   },
   "lint-staged": {
@@ -28,7 +28,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "testnowatch": "cross-env CI=true react-scripts test --env=jsdom",
+    "test:nowatch": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

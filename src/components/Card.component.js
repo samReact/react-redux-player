@@ -2,7 +2,6 @@ import React from 'react';
 import './Card.css';
 import { MdPlayCircleOutline } from 'react-icons/md';
 import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
 
 const Card = props => {
   const { card, sourceChange } = props;
