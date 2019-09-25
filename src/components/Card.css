@@ -1,0 +1,18 @@
+.imageWrapper {
+  transition: all 0.2s ease-in-out;
+  padding: 20;
+}
+
+.imageWrapper:hover {
+  transform: scale(1.1);
+}
+
+.imageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon {
+  position: absolute;
+  z-index: 10;
+}
