@@ -1,54 +1,40 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Player } from 'video-react';
 import { Button, Container } from 'reactstrap';
-import { MdPause, MdPlayArrow } from 'react-icons/md';
-import PropTypes from 'prop-types';
+import { IconPause, IconArrow, ControlButtonsWrapper } from '../styled/style';
 
-class PlayerItem extends Component {
-  play = () => {
-    this.player.play();
+const PlayerItem = props => {
+  let player = React.createRef();
+  const url = useSelector(state => state.playerReducer.url);
+
+  useEffect(() => {
+    player.current.load();
+  });
+
+  const play = () => {
+    player.current.play();
   };
 
-  pause = () => {
-    this.player.pause();
+  const pause = () => {
+    player.current.pause();
   };
 
-  reload = () => {
-    this.player.load();
-  };
-  render() {
-    const { url, reload } = this.props;
-    if (reload) {
-      this.reload();
-    }
-    return (
-      <Container style={{ marginTop: 20 }}>
-        <Player
-          fluid
-          ref={player => {
-            this.player = player;
-          }}
-          autoPlay
-          ControlBar
-        >
-          <source src={url} />
-        </Player>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button onClick={this.play} outline color="secondary" style={{ margin: 10 }}>
-            <MdPlayArrow style={{ height: 50, width: 50 }} />
-          </Button>
-          <Button onClick={this.pause} outline color="secondary" style={{ margin: 10 }}>
-            <MdPause style={{ height: 50, width: 50 }} />
-          </Button>
-        </div>
-      </Container>
-    );
-  }
-}
-
-PlayerItem.propTypes = {
-  url: PropTypes.string.isRequired,
-  reload: PropTypes.bool.isRequired,
+  return (
+    <Container style={{ marginTop: 20 }}>
+      <Player fluid ref={player} autoPlay ControlBar>
+        <source src={url} />
+      </Player>
+      <ControlButtonsWrapper>
+        <Button onClick={play} outline color="secondary" style={{ margin: 10 }}>
+          <IconArrow />
+        </Button>
+        <Button onClick={pause} outline color="secondary" style={{ margin: 10 }}>
+          <IconPause />
+        </Button>
+      </ControlButtonsWrapper>
+    </Container>
+  );
 };
 
 export default PlayerItem;

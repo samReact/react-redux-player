@@ -1,33 +1,25 @@
 import React from 'react';
-import './Card.css';
-import { MdPlayCircleOutline } from 'react-icons/md';
+import { IconWrapper, Image, ImageWrapper, IconPlay } from '../styled/style';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { SOURCE_CHANGE } from '../actions/types/player.action.type';
 
 const Card = props => {
-  const { card, sourceChange } = props;
+  const { card } = props;
+  const dispatch = useDispatch();
+  const payload = { url: card.source };
   return (
-    <div
-      className="imageWrapper"
-      onClick={() => sourceChange({ url: card.source, reload: true })}
-    >
-      <div className="icon">
-        <MdPlayCircleOutline style={{ color: 'white', height: 50, width: 50 }} />
-      </div>
-      <img
-        className="image"
-        src={card.thumb}
-        alt="exemple"
-        height="100"
-        width="150"
-        style={{ padding: 10 }}
-      />
-    </div>
+    <ImageWrapper onClick={() => dispatch({ payload, type: SOURCE_CHANGE })}>
+      <IconWrapper>
+        <IconPlay />
+      </IconWrapper>
+      <Image src={card.thumb} alt="exemple" height="100" width="150" />
+    </ImageWrapper>
   );
 };
 
 Card.propTypes = {
   card: PropTypes.object.isRequired,
-  sourceChange: PropTypes.func.isRequired,
 };
 
 export default Card;
