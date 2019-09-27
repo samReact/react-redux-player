@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Player } from 'video-react';
 import { Button, Container } from 'reactstrap';
 import { IconPause, IconArrow, ControlButtonsWrapper } from '../styled/style';
 
 const PlayerItem = props => {
-  let player = React.createRef();
   const url = useSelector(state => state.playerReducer.url);
+  let player = useRef();
 
   useEffect(() => {
     player.current.load();
