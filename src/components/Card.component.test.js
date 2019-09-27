@@ -1,48 +1,32 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Card from './Card.component';
+import configureStore from 'redux-mock-store';
+import { SOURCE_CHANGE } from '../actions/types/player.action.type';
+import * as ReactReduxHooks from './react-redux-hooks';
 
-jest.mock('react-redux', () => ({
-  useDispatch: () => {},
-}));
+describe('Card component', () => {
+  let cardWrapper;
+  let store;
 
-const setup = () => {
-  const props = {
-    card: {
-      description:
-        "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself. When one sunny day three rodents rudely harass him, something snaps... and the rabbit ain't no bunny anymore! In the typical cartoon tradition he prepares the nasty rodents a comical revenge.\n\nLicensed under the Creative Commons Attribution license\nhttp://www.bigbuckbunny.org",
-      source:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-
-      subtitle: 'By Blender Foundation',
-      thumb:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg',
-      title: 'Big Buck Bunny',
-    },
-  };
-
-  const cardWrapper = shallow(<Card {...props} />);
-
-  return {
-    props,
-    cardWrapper,
-  };
-};
-
-describe('components', () => {
-  describe('Card', () => {
-    it('should render an ImageWrapper component', () => {
-      const { cardWrapper } = setup();
-      expect(cardWrapper.find('ImageWrapper'));
+  beforeEach(() => {
+    const middlewares = [];
+    const mockStore = configureStore(middlewares);
+    const initialState = {};
+    store = mockStore(initialState);
+    jest.spyOn(ReactReduxHooks, 'useDispatch').mockImplementation(() => store.dispatch);
+    cardWrapper = shallow(<Card card={{}} store={store} />);
+  });
+  describe('ImageWrapper', () => {
+    it('should render one ImageWrapper component', () => {
+      expect(cardWrapper.find('ImageWrapper')).toHaveLength(1);
     });
-    it('should render an Image component with an url', () => {
-      const { cardWrapper } = setup();
 
-      console.log(cardWrapper.debug({ verbose: true }));
-
-      // expect(cardWrapper.find(img).prop('src')).toEqual(
-      //   'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
-      // );
+    it('should dispatch action on click', () => {
+      cardWrapper.find('ImageWrapper').simulate('click');
+      const actions = store.getActions();
+      const expectedPayload = { payload: { url: undefined }, type: SOURCE_CHANGE };
+      expect(actions).toEqual([expectedPayload]);
     });
   });
 });

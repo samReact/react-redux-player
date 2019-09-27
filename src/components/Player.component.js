@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
+import { useSelector } from './react-redux-hooks';
 import { Player } from 'video-react';
 import { Button, Container } from 'reactstrap';
 import { IconPause, IconArrow, ControlButtonsWrapper } from '../styled/style';

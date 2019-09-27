@@ -41,6 +41,9 @@ export const ImageWrapper = styled.div`
     transform: scale(1.1);
   }
 `;
+
+ImageWrapper.displayName = 'ImageWrapper';
+
 export const ControlButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
