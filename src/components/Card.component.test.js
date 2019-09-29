@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import Card from './Card.component';
 import configureStore from 'redux-mock-store';
+import { shallow } from 'enzyme';
+
+import Card from './Card.component';
 import { SOURCE_CHANGE } from '../actions/types/player.action.type';
-import * as ReactReduxHooks from './react-redux-hooks';
+import * as ReactReduxHooks from '../utils/react-redux-hooks';
 
 describe('Card component', () => {
   let cardWrapper;
