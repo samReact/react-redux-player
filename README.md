@@ -1,3 +1,5 @@
+## Small video Player using React / Redux / Hooks / Jest
+
 ### Running the project on dev mode
 
 1. Clone the repository
